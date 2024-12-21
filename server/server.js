@@ -10,8 +10,8 @@ const port = process.env.PORT || 10000;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post('/extract', async (req, res) => {
-    const { url } = req.body;
+app.get('/extract', async (req, res) => {
+    const { url } = req.query;
 
     if (!url) {
         return res.status(400).json({ error: 'URL is required' });
