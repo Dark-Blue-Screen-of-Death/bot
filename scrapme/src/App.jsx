@@ -16,7 +16,7 @@ function App() {
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/extract', { url });
+            const response = await axios.post('http://localhost:10000/extract', { url });
             setContent(response.data.content);
         } catch (err) {
             setError('Failed to extract content. Please check the URL or try again later.');
