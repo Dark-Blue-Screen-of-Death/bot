@@ -22,7 +22,7 @@ app.get('/extract', async (req, res) => {
         const page = await browser.newPage();
 
         await page.goto(url, { waitUntil: 'domcontentloaded' });
-
+        await new Promise(resolve => setTimeout(resolve, 15000)); // Wait for 10 seconds
         const content = await page.evaluate(() => document.body.innerText);
 
         await browser.close();
