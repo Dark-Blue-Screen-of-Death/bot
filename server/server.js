@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 app.get('/extract', async (req, res) => {
     const { url } = req.query;
+    const userAgent ="Mozilla/5.0 (Windows NT 6.1; Win64; x64; +http://www.komodia.com/newwiki/index.php/URL_server_crawler) KomodiaBot/1.0";
 
     if (!url) {
         return res.status(400).json({ error: 'URL is required' });
@@ -20,6 +21,7 @@ app.get('/extract', async (req, res) => {
     try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
+        // await page.setUserAgent(userAgent);
 
         await page.goto(url, { waitUntil: 'domcontentloaded' });
         await new Promise(resolve => setTimeout(resolve, 15000)); // Wait for 10 seconds
